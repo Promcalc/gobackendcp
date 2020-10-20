@@ -34,7 +34,7 @@ func isAuthorized(endpoint func(http.ResponseWriter, *http.Request)) http.Handle
 			endpoint(w, r)
 			//			}
 		} else {
-
+			fmt.Println("Error header: %v", r.Header)
 			fmt.Fprintf(w, "Not Authorized")
 		}
 	})
