@@ -11,13 +11,12 @@ var mySigningKey = []byte("captainjacksparrowsayshi")
 func homePage(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Hello World")
 	fmt.Println("Endpoint Hit: homePage")
-
 }
 
 func isAuthorized(endpoint func(http.ResponseWriter, *http.Request)) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 
-		if r.Header["bsauth"] != nil {
+		if r.Header["Bsauth"] != nil {
 
 			/*			token, err := jwt.Parse(r.Header["Token"][0], func(token *jwt.Token) (interface{}, error) {
 							if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
@@ -34,7 +33,7 @@ func isAuthorized(endpoint func(http.ResponseWriter, *http.Request)) http.Handle
 			endpoint(w, r)
 			//			}
 		} else {
-			fmt.Println("Error header: %v", r.Header)
+			fmt.Println("Error header: ", r.Header)
 			fmt.Fprintf(w, "Not Authorized")
 		}
 	})
